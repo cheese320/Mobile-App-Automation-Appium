@@ -1,24 +1,20 @@
 package base;
 
-import enums.DriverType;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import enums.AppType;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.util.Collections;
-import java.util.concurrent.TimeUnit;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class SingletonWebDriver {
-    private static WebDriver driver;
-    private static DriverType driverType=ReadConfigFile.getInstance().getDriverType();
+    private static AndroidDriver<AndroidElement> driver;
+    private static AppType appType = ReadConfigFile.getInstance().getAppType();
     private static SingletonWebDriver instance;
-
+    private static String url = "http://127.0.0.1:4732/wd/hub";
 
     private SingletonWebDriver(){driver=createDriver();}
 
@@ -30,38 +26,37 @@ public class SingletonWebDriver {
     }
 
     //expose to user
-    public WebDriver getDriver(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    public AndroidDriver<AndroidElement>  getDriver(){
         return driver;
     }
 
-    private WebDriver createDriver(){
-        switch(driverType){
-            case FIREFOX -> {
-                WebDriverManager.firefoxdriver().setup();
+    private AndroidDriver<AndroidElement> createDriver(){
+        var dc = new DesiredCapabilities();
 
-                driver = new FirefoxDriver();
+        dc.setCapability(MobileCapabilityType.DEVICE_NAME,"emulator-5554");
+        dc.setCapability("platformName","android");
+
+        switch(appType){
+            case Contact -> {
+                dc.setCapability("appPackage","com.android.contacts");
+                dc.setCapability("appActivity",".activities.PeopleActivity");
             }
-            case IE -> {
-                WebDriverManager.iedriver().setup();
-                driver = new InternetExplorerDriver();
+            case Settings -> {
+                dc.setCapability("appPackage","com.android.settings");
+                dc.setCapability("appActivity",".accounts.AddAccountSettings");
             }
             default -> {
-                WebDriverManager.chromedriver().setup();
-                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                //chromeOptions.addArguments("--headless");
-                chromeOptions.addArguments("--start-maximized");
-                chromeOptions.addArguments("--verbose");
-                chromeOptions.addArguments("--whitelisted-ips=''");
-                //禁止显示“Chrome正在受到自动软件的控制”字样
-                //chromeOptions.addArguments("--disable-infobars");  //out of date
-                //chromeOptions.setExperimentalOption("userAutomationExtension",false);
-                chromeOptions.setExperimentalOption("excludeSwitches",new String[]{"enable-automation"});
-                capabilities.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
-                driver = new ChromeDriver(capabilities);
-
+                dc.setCapability("appPackage","com.google.android.apps.messaging");
+                dc.setCapability("appActivity",".ui.ConversationListActivity");
             }
+        }
+
+
+
+        try{
+            driver = new AndroidDriver<AndroidElement>(new URL(url),dc);
+        } catch(MalformedURLException e){
+            e.printStackTrace();
         }
         return driver;
     }

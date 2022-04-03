@@ -1,6 +1,6 @@
 package base;
 
-import enums.DriverType;
+import enums.AppType;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -44,17 +44,17 @@ public class ReadConfigFile {
     }
 
     //get browser driver type. use Chrome as default
-    public DriverType getDriverType(){
+    public AppType getAppType(){
         String driverType = prop.getProperty("driverType").toLowerCase(Locale.US);
         switch(driverType){
-            case "firefox" -> {
-                return DriverType.FIREFOX;
+            case "settings" -> {
+                return AppType.Settings;
             }
-            case "ie" -> {
-                return DriverType.IE;
+            case "contact" -> {
+                return AppType.Contact;
             }
             default -> {
-                return DriverType.CHROME;
+                return AppType.Message;
             }
         }
     }

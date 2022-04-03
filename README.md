@@ -1,3 +1,5 @@
+
+
 # Mobile-App-Automation-Appium
 
 Mobile app automation. 
@@ -17,7 +19,23 @@ Mobile type: android
 
 
 
+## Coverage (To be continued)
+
+| Category        | Description         | Status |
+| --------------- | ------------------- | ------ |
+| Framework level | Page Object pattern | Done   |
+|                 | appium              | Done   |
+|                 | TestNG              | Done   |
+|                 | Log4j               | Done   |
+|                 | Extent Report       | Done   |
+| Functionality   | Retry               | Done   |
+|                 | TouchAction         | Done   |
+|                 | Drag and Drop       | Done   |
+|                 | take snapshot       | Done   |
+
 ## TODO
+
+解决下面这个问题:
 
 java: 无法访问org.openqa.selenium.virtualauthenticator.HasVirtualAuthenticator
   找不到org.openqa.selenium.virtualauthenticator.HasVirtualAuthenticator的类文件

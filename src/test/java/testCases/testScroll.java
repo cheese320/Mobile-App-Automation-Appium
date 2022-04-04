@@ -4,15 +4,12 @@ import Pages.ContactList;
 import Pages.Message;
 import Utils.Listeners.Retry;
 import Utils.TestInit;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-public class scroll extends TestInit{
+public class test_scroll extends TestInit{
     ContactList contactList;
     Message msg;
 

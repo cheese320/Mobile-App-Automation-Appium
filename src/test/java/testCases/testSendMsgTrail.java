@@ -10,7 +10,7 @@ import org.testng.Assert;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class sendMsgTrail {
+public class test_sendMsgTrail {
     public static void main(String[] args) throws MalformedURLException {
         String url = "http://127.0.0.1:4732/wd/hub";
 

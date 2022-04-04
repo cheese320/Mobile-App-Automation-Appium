@@ -6,7 +6,7 @@ import Utils.TestInit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-public class selectContactSendMsg extends TestInit {
+public class test_selectContactSendMsg extends TestInit {
     ContactList contactList;
 
     @Test(retryAnalyzer = Retry.class)

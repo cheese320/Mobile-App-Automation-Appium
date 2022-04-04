@@ -4,10 +4,9 @@ import Pages.Message;
 import Utils.Listeners.Retry;
 import Utils.TestInit;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class sendMessageOut extends TestInit{
+public class test_sendMessageOut extends TestInit{
     Message msg;
 
     @Test(retryAnalyzer = Retry.class)

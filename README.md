@@ -35,7 +35,7 @@ Mobile type: android
 
 ## TODO
 
-1. Element locate
+1. Element find(search like UI ele?)
 2. Framework
 3. alert which doesn't always prompt
 4. switch between service

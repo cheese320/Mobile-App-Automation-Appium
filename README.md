@@ -35,7 +35,8 @@ Mobile type: android
 
 ## TODO
 
-解决下面这个问题:
-
-java: 无法访问org.openqa.selenium.virtualauthenticator.HasVirtualAuthenticator
-  找不到org.openqa.selenium.virtualauthenticator.HasVirtualAuthenticator的类文件
+1. Element locate
+2. Framework
+3. alert which doesn't always prompt
+4. switch between service
+5. TBC
